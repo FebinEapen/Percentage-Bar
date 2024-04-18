@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PercentBar</title>
+</head>
+<body>
+
+    <div class="skills-section">
+        <h2>Web Skills</h2>
+        <p></p>
+        <div class="skills">
+            <div class="skill" data-skill-name="HTML" data-skill-percentage="80" data-skill-color="#ef8c0d"></div>
+            <div class="skill" data-skill-name="CSS" data-skill-percentage="70" data-skill-color="#5f26cb"></div>
+            <div class="skill" data-skill-name="JS" data-skill-percentage="60" data-skill-color="#dada1a"></div>
+            <div class="skill" data-skill-name="React" data-skill-percentage="75" data-skill-color="#00acee"></div>
+        </div>
+    </div>
+
+
+
+
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            height: 100vh;
+            display: grid;
+            align-items: center;
+            justify-content: center;
+            place-items: center;
+        }
+        .skills-section{
+            width: 100%;
+            padding: 1em;
+        }
+        .skills-section h2{
+            text-align: center;
+            font-size: 2em;
+            color: #111;
+        }
+        .skills-section p{
+            text-align: center;
+            width: 100%;
+            margin: 10px auto 20px; 
+            font-size: 15px;
+            color: #444;
+        }
+        .skills-section .skills{
+            display: grid;
+            gap: 1.25em;
+        }
+        .skills-section .skills .skill{
+            display: grid;
+            gap: 5px;
+        } 
+        .skills-section .skills .skill .name{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #111;
+        }
+        .skills-section .skills .skill .percentage{
+            font-size: 13px;
+            font-weight: 600;
+            color: #222;
+        }
+        .skills-section .skills .skill .bar {
+            width: 100%;
+            height: 8px;
+            background: #eee;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+        .skills-section .skills .skill .bar .progress{
+            display: block;
+            width: 0%;
+            height: 100%;
+            border-radius: 5px;
+            animation: progress 2000ms ease-in-out;
+        }      
+        @keyframes progress{
+            0% {width: 0%;}
+        }
+    </style>
+
+    <script>
+        document.querySelectorAll(".skills .skill").forEach((node) => {
+            const name = node.getAttribute("data-skill-name");
+            const percentage = node.getAttribute("data-skill-percentage");
+            const color = node.getAttribute("data-skill-color");
+            const style = `background:${color}; width:${percentage}%`;
+
+            node.innerHTML = `
+             <div class="name">
+                <div class="label">${name}</div>
+                <div class="percentage">${percentage}</div>  
+             </div> 
+             <div class="bar">
+                <div class="progress" style="${style}"></div>
+             </div>
+            `;
+        });
+    </script>
+    
+</body>
+</html>
